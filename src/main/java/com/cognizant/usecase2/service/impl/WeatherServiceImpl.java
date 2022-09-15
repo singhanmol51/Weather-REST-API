@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.cognizant.usecase2.entities.Weather;
 import com.cognizant.usecase2.exceptions.InvalidInputException;
-import com.cognizant.usecase2.exceptions.UserNotFoundException;
+import com.cognizant.usecase2.exceptions.IdNotFoundException;
 import com.cognizant.usecase2.repository.WeatherRepository;
 import com.cognizant.usecase2.service.WeatherService;
 
@@ -28,7 +28,7 @@ public class WeatherServiceImpl implements WeatherService  {
 	@Override
 	public Weather getWeatherById(int id) {
 		// TODO Auto-generated method stub
-		return this.weatherRepo.findById(id).orElseThrow(()->new UserNotFoundException("User Not Found with User ID: "+id));
+		return this.weatherRepo.findById(id).orElseThrow(()->new IdNotFoundException("Weather Data Not Found with  ID: "+id));
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class WeatherServiceImpl implements WeatherService  {
 	@Override
 	public Weather deleteWeather(int id) {
 		// TODO Auto-generated method stub
-		this.weatherRepo.findById(id).orElseThrow(()->new UserNotFoundException("User Not Found with User ID: "+id));
+		this.weatherRepo.findById(id).orElseThrow(()->new IdNotFoundException("Weather Data Not Found with ID: "+id));
 		this.weatherRepo.deleteById(id);
 		return null;
 	}
@@ -58,7 +58,7 @@ public class WeatherServiceImpl implements WeatherService  {
 	@Override
 	public Weather updateWeather(int id, Weather weather) {
 		// TODO Auto-generated method stub
-		Weather old=this.weatherRepo.findById(id).orElseThrow(()->new UserNotFoundException("User Not Found with User ID: "+id));
+		Weather old=this.weatherRepo.findById(id).orElseThrow(()->new IdNotFoundException("Weather Data Not Found with User ID: "+id));
 		
 		if(weather.getLon()==null || weather.getCity()==null || weather.getLat()==null || weather.getState()==null || weather.getTemperature()==null)
 		{

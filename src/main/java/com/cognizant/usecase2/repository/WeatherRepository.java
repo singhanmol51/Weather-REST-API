@@ -10,6 +10,7 @@ import com.cognizant.usecase2.entities.Weather;
 @Repository
 public interface WeatherRepository extends JpaRepository<Weather, Integer>{
 
+	//@query multiple ways to write the query
 	List<Weather> findByCity(String city);
 	
 	List<Weather> findByState(String state);

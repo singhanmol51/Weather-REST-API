@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -24,8 +23,10 @@ import lombok.NoArgsConstructor;
 public class Weather {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//try it using auto and joins also and mapping one to many
 	private int id;
+//	@GeneratedValue(strategy=GenerationType.AUTO)
+//	private int id2;
 	@CreationTimestamp
 	@JsonFormat(pattern="yyyy-MM-dd")
 	@Column(updatable=false, nullable=false)
